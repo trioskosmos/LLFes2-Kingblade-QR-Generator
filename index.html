@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>King Blade QR — Love Live! member colours</title>
+<meta name="description" content="Build King Blade (KBX5) QR colour codes for Love Live! groups: full group, 15th Fes roster, or any combination of members.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="kicker">King Blade ・ KBX5 QR</div>
+    <h1>Build a penlight colour QR</h1>
+    <p class="lede">Pick one group or combine several, take the whole roster or just the members
+      actually appearing at <b>LOVELIVE! FEST 2026</b>, then trim and reorder.
+      The QR updates as you go.</p>
+    <p class="sources">
+      <span>Colours</span>
+      <a href="https://huurai0.hatenablog.com/entry/2026/10/05/114338" target="_blank" rel="noopener">huurai0.hatenablog.com — ラブライブペンライトカラー表</a>
+      <span>Roster</span>
+      <a href="https://www.lovelive-anime.jp/special/live/live_detail.php?p=15th_lovelivefest" target="_blank" rel="noopener">lovelive-anime.jp — LOVELIVE! FEST 出演者</a>
+    </p>
+  </header>
+
+  <main class="layout">
+
+    <section class="panel">
+      <div class="field">
+        <div class="fieldhead"><span>Groups <em>— click to combine</em></span><span class="count" id="grpCount"></span></div>
+        <div class="pills" id="groups"></div>
+      </div>
+
+      <div class="field">
+        <div class="fieldhead"><span>Roster</span><span class="count" id="selCount"></span></div>
+        <div class="presets">
+          <button class="btn sm" id="pFull">Full group</button>
+          <button class="btn sm" id="pFes">15th Fes only</button>
+          <button class="btn sm ghost" id="pClear">Clear</button>
+        </div>
+        <ul class="members" id="members"></ul>
+      </div>
+    </section>
+
+    <aside class="preview">
+      <div class="card">
+        <label class="lab" for="labelInput">QR label <span>(line 2 of the payload)</span></label>
+        <input id="labelInput" class="text" maxlength="40">
+
+        <div class="qrbox"><div id="qr"></div></div>
+        <p class="capacity" id="capacity"></p>
+        <div class="limit" id="limit" hidden></div>
+
+        <div class="actions">
+          <button class="btn" id="dlPng">Download PNG</button>
+          <button class="btn" id="dlSvg">SVG</button>
+          <button class="btn ghost" id="copyBtn">Copy text</button>
+        </div>
+        <p class="status" id="status"></p>
+      </div>
+
+      <div class="card payloadcard">
+        <div class="fieldhead"><span>Payload</span><span class="count" id="qrMeta"></span></div>
+        <pre class="payload" id="payload"></pre>
+      </div>
+    </aside>
+
+  </main>
+
+  <footer>
+    <p><b>Format</b> — <code>Copyright RUIFAN:KBX5</code>, then a free-text label, then one
+      <code>rrggbb0000</code> line per colour. Verified against the published codes at
+      <a href="https://huurai0.hatenablog.com/entry/2026/10/05/114338" target="_blank" rel="noopener">huurai0.hatenablog.com</a>
+      — all seven decode with header and <code>0000</code> padding intact.</p>
+    <p><b>Colours</b> — taken from that page's King Blade table, not the raw official-site values.
+      They are deliberately dark on screen; that is what lands correctly on the LED.
+      White is not reachable, so the whites there are greys (<code>155,155,155</code>, <code>206,191,191</code>).</p>
+    <p><b>Capacity</b> — King Blade <b>X10 V</b> and <b>one1R</b> hold <b>15 colours per BLADE</b>;
+      X10 V has two memory slots, so two patterns can be kept on the penlight. Every code published
+      on that page tops out at 14 colours, which fits. Codes longer than 15 may not load — the
+      warning above the buttons flags this. (The app covers X10 Ver.3, X10 Ver.5, one1B and one1RB;
+      some models are reported to store more.)</p>
+    <p><b>Roster</b> — "15th Fes only" follows the cast list on the official
+      <a href="https://www.lovelive-anime.jp/special/live/live_detail.php?p=15th_lovelivefest" target="_blank" rel="noopener">live detail page</a>.
+      Aqours appears there with 5 of 9 members; μ's with 6 of 9.</p>
+  </footer>
+</div>
+
+<script src="qr.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
